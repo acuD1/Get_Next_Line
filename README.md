@@ -8,5 +8,5 @@ Usage:
 
 And
 
-```./GNL [file]
+```./GNL [file]```
 
