@@ -1,23 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/14 19:11:31 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/23 10:17:34 by arsciand         ###   ########.fr       */
+/*   Created: 2019/03/05 14:38:35 by arsciand          #+#    #+#             */
+/*   Updated: 2019/04/23 15:00:21 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-void	*ft_memset(void *s, int c, size_t len)
+char	*ft_strjoin_free(char *s1, char *s2, int vars)
 {
-	unsigned char	*tmp;
+	char	*str;
 
-	tmp = s;
-	while (len--)
-		*tmp++ = (unsigned char)c;
-	return (s);
+	str = ft_strjoin(s1, s2);
+	if (vars == 0)
+		return (str);
+	else if (vars == 1)
+		free(s1);
+	else if (vars == 2)
+		free(s2);
+	else
+	{
+		free(s1);
+		free(s2);
+	}
+	return (str);
 }

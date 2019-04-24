@@ -9,4 +9,3 @@ Usage:
 And
 
 ```./GNL [file]```
-

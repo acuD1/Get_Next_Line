@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 14:58:23 by arsciand          #+#    #+#             */
-/*   Updated: 2018/11/27 13:31:59 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/04/13 09:51:26 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int		main(int ac, char **av)
 		ft_putendl(line);
 		free(line);
 	}
+	free(line);
 	if (ac == 2)
 		close(fd);
 }

@@ -67,7 +67,7 @@ LIB = $(L_PATH)$(LNAME)
 
 # Variables
 
-C_GCC = gcc
+C_GCC = gcc -g
 CMPLC = $(C_GCC) -c -I$(H_PATH)
 CMPLO = $(C_GCC) -o
 BUILD = $(B_PATH) $(O_PATH)

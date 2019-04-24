@@ -1,23 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstpushback.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
+/*   By: arsciand <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/14 19:11:31 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/23 10:17:34 by arsciand         ###   ########.fr       */
+/*   Created: 2018/12/25 14:58:06 by arsciand          #+#    #+#             */
+/*   Updated: 2019/02/14 08:29:03 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t len)
+void		ft_lstpushback(t_list **alst, t_list *new)
 {
-	unsigned char	*tmp;
+	t_list	*tmp;
 
-	tmp = s;
-	while (len--)
-		*tmp++ = (unsigned char)c;
-	return (s);
+	if (!new)
+		return ;
+	tmp = *alst;
+	if (tmp)
+	{
+		while (tmp->next)
+			tmp = tmp->next;
+		tmp->next = new;
+	}
+	else
+		*alst = new;
 }

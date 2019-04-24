@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memset.c                                        :+:      :+:    :+:   */
+/*   ft_lstrev.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2018/10/14 19:11:31 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/23 10:17:34 by arsciand         ###   ########.fr       */
+/*   Created: 2019/03/09 14:40:50 by arsciand          #+#    #+#             */
+/*   Updated: 2019/04/23 14:59:47 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_memset(void *s, int c, size_t len)
+void	ft_lstrev(t_list **alst)
 {
-	unsigned char	*tmp;
+	t_list	*current;
+	t_list	*next;
+	t_list	*prev;
 
-	tmp = s;
-	while (len--)
-		*tmp++ = (unsigned char)c;
-	return (s);
+	current = *alst;
+	next = NULL;
+	prev = NULL;
+	while (current)
+	{
+		next = current->next;
+		current->next = prev;
+		prev = current;
+		current = next;
+	}
+	*alst = prev;
 }
