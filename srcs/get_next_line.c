@@ -6,7 +6,7 @@
 /*   By: arsciand <arsciand@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/11/23 18:50:58 by arsciand          #+#    #+#             */
-/*   Updated: 2019/04/13 09:51:42 by arsciand         ###   ########.fr       */
+/*   Updated: 2019/06/01 17:33:58 by arsciand         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,13 @@ static int	check_line(char **stack)
 
 static int	init(int const fd, char **line, char *buff, char **stack)
 {
-	if (fd == -1 || FD_MAXSET > 4864 || BUFF_SIZE < 1
-			|| !line || read(fd, buff, 0))
+	if (fd == -1 || FD_MAXSET > 4864 || BUFF_SIZE < 1 || !line
+			|| (read(fd, buff, 0) == -1)
+			|| (!(stack[fd]) && !(stack[fd] = ft_strnew(0))))
+	{
+		ft_strdel(&buff);
 		return (0);
-	if (!(stack[fd]))
-		if (!(stack[fd] = ft_strnew(0)))
-			return (0);
+	}
 	return (1);
 }
 
@@ -50,9 +51,9 @@ int			get_next_line(int const fd, char **line)
 		buff[ret] = '\0';
 		tmp = stack[fd];
 		stack[fd] = ft_strjoin(tmp, buff);
-		free(tmp);
+		free(buff);
 	}
-	free(buff);
+	ft_strdel(&buff);
 	*line = ft_strsub(stack[fd], 0, ft_strclen(stack[fd], '\n'));
 	if (*stack[fd])
 	{
@@ -62,6 +63,6 @@ int			get_next_line(int const fd, char **line)
 			ft_strdel(&stack[fd]);
 		return (1);
 	}
-	free(stack[fd]);
+	ft_strdel(&stack[fd]);
 	return (0);
 }
